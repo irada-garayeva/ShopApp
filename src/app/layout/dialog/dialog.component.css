@@ -1,0 +1,13 @@
+:focus {
+    outline:none;
+  }
+  .example-full-width{
+    width: 100%;
+  }
+  .close-icon{
+    float: right;
+  }
+  .btn-login{
+    text-align: center;
+    margin-top:35px;
+  }

@@ -1,0 +1,64 @@
+<app-main-nav>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-3">
+        <app-cart-summary></app-cart-summary>
+        <router-outlet></router-outlet>
+        <mat-selection-list #categoryList [multiple]="false">
+          <mat-list-option>
+            All
+          </mat-list-option>
+          <mat-list-option *ngFor="let category of categories" [value]="category.name">
+            {{category.name}}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+      <div class="col-9">
+        <mat-card class="example-card m-3"
+          *ngFor="let product of getProducts(categoryList.selectedOptions.selected[0]?.value)">
+          <img mat-card-image [src]="'../../../assets/img/'+product.imageUrl">
+          <mat-card-content>
+            <p>
+              {{product.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>
+            {{product.price}}
+            <mat-icon>local_offer</mat-icon>
+          </mat-card-subtitle>
+          <button mat-raised-button color="accent" (click)='addNewProductToCart(product)'>
+            Add to Cart
+            <mat-icon mat-button>add_shopping_cart</mat-icon>
+          </button>
+          <button mat-raised-button class="mx-2">
+            Details
+          </button>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-9">
+
+        <mat-paginator 
+        (page)="pageChangeEvent($event)" 
+         [length]="pageLength" 
+         [pageSize]="pageSize" 
+        >
+        </mat-paginator>
+
+        <!-- <nav >
+          <ul class="pagination pagination-lg">
+            <li class="page-item" *ngFor="let page of pageNumbers" (click)='changePage(page)' [class.active]='page==selectedPage'>
+              <a class="page-link" href="#" *ngIf="pageNumbers.length!=1" >{{page}}</a>
+            </li>
+          </ul>
+        </nav> -->
+      </div>
+    </div>
+  </div>
+</app-main-nav>

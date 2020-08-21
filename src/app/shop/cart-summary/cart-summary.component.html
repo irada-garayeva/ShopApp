@@ -1,0 +1,12 @@
+<div class="alert alert-success">
+  <p *ngIf="cart.totalQuantity > 0">
+    Səbətinizdə {{ cart.totalQuantity }} məhsul var. 
+    <br>
+    Cəmi qiymət:{{
+      cart.totalPrice
+    }}$
+  </p>
+  <p *ngIf="cart.totalQuantity == 0">
+    Səbətdə məhsul yoxdur.
+  </p>
+</div>
