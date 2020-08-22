@@ -15,10 +15,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CustomPaginator } from '../models/CustomPaginatorConfiguration';
 
 
 @NgModule({
@@ -41,5 +42,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
   ],
   declarations: [ShopComponent, MainNavComponent, DialogComponent, CartSummaryComponent, CartDetailComponent, CheckoutComponent],
   exports: [ShopComponent],
+  providers: [ { provide: MatPaginatorIntl, useValue: CustomPaginator() }]
 })
 export class ShopModule {}

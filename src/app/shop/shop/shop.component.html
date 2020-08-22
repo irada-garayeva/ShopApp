@@ -3,19 +3,19 @@
     <div class="row">
       <div class="col-3">
         <app-cart-summary></app-cart-summary>
-      <router-outlet></router-outlet>
         <mat-selection-list #categoryList [multiple]="false">
-          <mat-list-option>
+          <mat-list-option (click)='changeCategory(undefined)'>
             All
           </mat-list-option>
-          <mat-list-option *ngFor="let category of categories" [value]="category.name">
+          <mat-list-option *ngFor="let category of categories" [value]="category.name" (click)='changeCategory(category.name)'>
             {{category.name}}
           </mat-list-option>
         </mat-selection-list>
       </div>
       <div class="col-9">
         <mat-card class="example-card m-3"
-          *ngFor="let product of getProducts(categoryList.selectedOptions.selected[0]?.value)">
+          *ngFor="let product of getProducts(categoryList.selectedOptions.selected[0]?.value) 
+          | slice:((paginator.pageIndex)*pageSize):((paginator.pageIndex+1)*pageSize)">
           <img mat-card-image [src]="'../../../assets/img/'+product.imageUrl">
           <mat-card-content>
             <p>
@@ -43,21 +43,12 @@
     <div class="row">
       <div class="col-3"></div>
       <div class="col-9">
-
-        <mat-paginator 
-        (page)="pageChangeEvent($event)" 
-         [length]="pageLength" 
-         [pageSize]="pageSize" 
-        >
-        </mat-paginator>
-
-        <!-- <nav >
-          <ul class="pagination pagination-lg">
-            <li class="page-item" *ngFor="let page of pageNumbers" (click)='changePage(page)' [class.active]='page==selectedPage'>
-              <a class="page-link" href="#" *ngIf="pageNumbers.length!=1" >{{page}}</a>
-            </li>
-          </ul>
-        </nav> -->
+        <mat-paginator #paginator
+        [length]="length"
+        [pageSize]="pageSize"
+        (page)="pageEvent = $event"
+       >
+</mat-paginator>
       </div>
     </div>
   </div>
