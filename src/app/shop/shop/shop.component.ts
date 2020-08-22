@@ -1,16 +1,18 @@
+import { map } from 'rxjs/operators';
+import { RestService } from './../../services/rest.service';
 import { Cart } from './../../models/cart.model';
 import { Category } from './../../models/category.model';
 import { Product } from './../../models/product.model';
 import { CategoryService } from './../../services/category.service';
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css'],
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, AfterViewInit {
   selectedCategory: Category;
   pageLength = 0;
   splicedData: Product[];
@@ -19,11 +21,21 @@ export class ShopComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
+    private restService: RestService,
     private cart: Cart
-  ) {}
-
+  ) {
+  }
   ngOnInit(): void {
-    this.splicedData = this.productService.getProducts(this.selectedCategory);
+    this.restService
+    .getProducts()
+    .subscribe((response) => (this.splicedData = response as Product[]));
+
+
+    // this.splicedData
+    // .slice(((0 + 1) - 1) * this.pageSize).slice(0, this.pageSize);
+  }
+  ngAfterViewInit(): void{
+    console.log(this.splicedData);
   }
 
   getProducts(selectedCategory: Category): Product[] {
