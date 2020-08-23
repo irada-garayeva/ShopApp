@@ -14,8 +14,7 @@
       </div>
       <div class="col-9">
         <mat-card class="example-card m-3"
-          *ngFor="let product of getProducts(categoryList.selectedOptions.selected[0]?.value) 
-          | slice:((paginator.pageIndex)*pageSize):((paginator.pageIndex+1)*pageSize)">
+          *ngFor="let product of products">
           <img mat-card-image [src]="'../../../assets/img/'+product.imageUrl">
           <mat-card-content>
             <p>
@@ -46,8 +45,7 @@
         <mat-paginator #paginator
         [length]="length"
         [pageSize]="pageSize"
-        (page)="pageEvent = $event"
-       >
+        (page)="getProducts(categoryList.selectedOptions.selected[0]?.value,(paginator.pageIndex)*pageSize,(paginator.pageIndex+1)*pageSize)">
 </mat-paginator>
       </div>
     </div>

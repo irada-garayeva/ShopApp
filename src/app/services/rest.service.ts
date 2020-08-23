@@ -18,4 +18,13 @@ export class RestService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUrl + 'categories');
   }
+
+  getProductsFromVS(offset): Observable<Product[]> {
+    if (offset === null) {
+      offset = 0;
+    }
+    return this.http.get<Product[]>(
+      'http://localhost:59716/api/weatherforecast/' + `${offset}/${2}`
+    );
+  }
 }
