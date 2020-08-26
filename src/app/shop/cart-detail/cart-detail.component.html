@@ -1,1 +1,53 @@
-<p>cart-detail works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <table mat-table [dataSource]="cart.CartItems" class="mat-elevation-z8 mt-3">
+          <!-- Image Column -->
+        <ng-container matColumnDef="imageUrl">
+          <th mat-header-cell *matHeaderCellDef>Image</th>
+          <td mat-cell *matCellDef="let element"> <img [src]="'../../../assets/img/'+element.product.imageUrl" width="60"></td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+        </ng-container>
+      
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+      
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.product.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef>
+          
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button color="warn" class="btn-close" (click)='cart.removeItem(element.product.id)'>
+              <mat-icon>close</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <div class="col-3 mt-3">
+      <app-cart-summary></app-cart-summary>
+    </div>
+  
+  </div>
+</div>
+
+
+  
+  

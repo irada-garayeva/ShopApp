@@ -4,9 +4,7 @@ import { Product } from './../models/product.model';
 import { RestService } from './rest.service';
 import { Injectable, OnInit } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductService {
   products: Product[] = [];
   constructor(private service: RestService) {

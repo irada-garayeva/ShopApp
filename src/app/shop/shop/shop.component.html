@@ -1,8 +1,7 @@
-<app-main-nav>
+
   <div class="container mt-4">
     <div class="row">
       <div class="col-3">
-        <app-cart-summary></app-cart-summary>
         <mat-selection-list #categoryList [multiple]="false">
           <mat-list-option (click)='changeCategory(undefined)'>
             All
@@ -50,4 +49,3 @@
       </div>
     </div>
   </div>
-</app-main-nav>

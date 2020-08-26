@@ -1,13 +1,13 @@
 import { Product } from './product.model';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class Cart {
   CartItems: CartItem[] = [];
   totalQuantity = 0;
   totalPrice = 0;
+  cartItemsChanged = new Subject<CartItem[]>();
 
   addItem(product: Product, quantity: number = 1): void {
     const cartItem = this.CartItems.find(
@@ -33,11 +33,10 @@ export class Cart {
   }
 
   removeItem(id): void {
-    const cartItem = this.CartItems.find((item) => item.product.id === id);
-    if (cartItem !== undefined) {
-      this.CartItems = this.CartItems.splice(id, 1);
-    }
-    this.calculate();
+      const index = this.CartItems.findIndex((item) => item.product.id === id);
+      this.CartItems.splice(index, 1);
+      this.calculate();
+      this.cartItemsChanged.next(this.CartItems.slice());
   }
 
   clear(): void {

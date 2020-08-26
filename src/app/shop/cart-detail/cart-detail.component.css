@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+  }
+  :focus {
+    outline:none;
+  }
+  .btn-close{
+    border: none;
+  }

@@ -2,9 +2,7 @@ import { Category } from './../models/category.model';
 import { RestService } from './rest.service';
 import { Injectable, OnInit } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CategoryService implements OnInit {
   categories: Category[] = [];
 

@@ -9,4 +9,6 @@
   <p *ngIf="cart.totalQuantity == 0">
     Səbətdə məhsul yoxdur.
   </p>
+  <button mat-raised-button color="accent" class="mr-2" [routerLink]="['/shop']" routerLinkActive="router-link-active" >Davam et</button>
+  <button mat-raised-button color="primary"  [routerLink]="['/shop/checkout']">Ödə</button>
 </div>

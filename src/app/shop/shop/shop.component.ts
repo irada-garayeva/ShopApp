@@ -1,11 +1,11 @@
 import { RestService } from './../../services/rest.service';
-import { PageEvent, MatPaginatorIntl } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { Cart } from './../../models/cart.model';
 import { Category } from './../../models/category.model';
 import { Product } from './../../models/product.model';
 import { CategoryService } from './../../services/category.service';
 import { ProductService } from './../../services/product.service';
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({

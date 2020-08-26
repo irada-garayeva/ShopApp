@@ -1,12 +1,11 @@
+import { Order } from './../models/order.model';
 import { Category } from '../models/category.model';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class RestService {
   baseUrl = 'http://localhost:3500/';
   constructor(private http: HttpClient) {}
@@ -26,5 +25,10 @@ export class RestService {
     return this.http.get<Product[]>(
       'http://localhost:59716/api/weatherforecast/' + `${offset}/${2}`
     );
+  }
+
+  saveOrder(order: Order): Observable<Order> {
+    console.log(order);
+    return this.http.post<Order>(this.baseUrl + 'orders', order);
   }
 }

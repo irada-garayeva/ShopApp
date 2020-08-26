@@ -1,3 +1,4 @@
+import { MainNavComponent } from './../layout/main-nav/main-nav.component';
 import { ShopComponent } from './shop/shop.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
@@ -6,15 +7,23 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
-    path: 'shop',
-    component: ShopComponent,
+    path: '',
+    component: MainNavComponent,
     children: [
       {
-        path: 'checkout',
+        path: '',
+        component: ShopComponent,
+      },
+      {
+        path: 'shop',
+        redirectTo: '',
+      },
+      {
+        path: 'shop/checkout',
         component: CheckoutComponent,
       },
       {
-        path: 'cartdetail',
+        path: 'shop/cartdetail',
         component: CartDetailComponent,
       },
     ]
